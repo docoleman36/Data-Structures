@@ -63,10 +63,11 @@ class LinkedList:
         # else, return VALUE of the old head
         else:
             ret_value = self.head.get_value()
-            # list with +2 elements
+            # list with 1 elements
             if self.head == self.tail:
                 self.head = None
                 self.tail = None
+            # list with +2 elements
             else:
                 self.head = self.head.get_next_node()
             return ret_value
@@ -75,13 +76,13 @@ class LinkedList:
         # empty list
         if self.head is None:
             return None
-        # list with 1 element?
         else:
             ret_value = self.tail.get_value()
-            # list with +2 elements?
+            # list with 1 element?
             if self.tail == self.head:
                 self.tail = None
                 self.head = None
+            # list with +2 elements?
             else:
                 self.tail = self.tail.get_next_node()
             # update tail
