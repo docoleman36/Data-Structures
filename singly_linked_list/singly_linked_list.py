@@ -63,10 +63,11 @@ class LinkedList:
         # else, return VALUE of the old head
         else:
             ret_value = self.head.get_value()
-            # list with +2 elements
+            # list with 1 elements
             if self.head == self.tail:
                 self.head = None
                 self.tail = None
+            # list with +2 elements
             else:
                 self.head = self.head.get_next_node()
             return ret_value
@@ -75,17 +76,22 @@ class LinkedList:
         # empty list
         if self.head is None:
             return None
+
+        ret_value = self.tail.get_value()
         # list with 1 element?
-        else:
-            ret_value = self.tail.get_value()
+        if self.tail == self.head:
+            self.tail = None
+            self.head = None
             # list with +2 elements?
-            if self.tail == self.head:
-                self.tail = None
-                self.head = None
-            else:
-                self.tail = self.tail.get_next_node()
+        else:
+            cur_node = self.head
+            while cur_node.get_next_node() is not self.tail:
+                cur_node = cur_node.get_next_node()
             # update tail
-            return ret_value
+            cur_node.set_next_node(None)
+            self.tail = cur_node
+
+        return ret_value
 
     def contains(self, value):
         # loop through LL until next pointer is None
