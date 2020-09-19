@@ -24,11 +24,11 @@ class Queue:
         self.storage = LinkedList()
 
     def __len__(self):
-        pass
+        return self.size
 
     def enqueue(self, value):
         self.size += 1
-        return self.storage.add_to_tail(value)
+        self.storage.add_to_tail(value)
 
     def dequeue(self):
         if self.size == 0:

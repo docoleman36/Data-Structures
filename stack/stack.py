@@ -21,7 +21,7 @@ class Stack:
         self.storage = LinkedList()
 
     def __len__(self):
-        pass
+        return self.size
 
     def push(self, value):
         self.size += 1
