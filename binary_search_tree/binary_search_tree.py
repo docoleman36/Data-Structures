@@ -36,39 +36,75 @@ class BSTNode:
     # False if it does not
     def contains(self, target):
         # check if self.value is target
-            # if yes, return True
-            # if no,
-                # go left?
-                # go right?
-        pass
+        if self.value is target:
+            return True
+
+        if target < self.value:
+            if not self.left:
+                return False
+            else:
+                self.left.contains(target)
+        else:
+            if not self.right:
+                return False
+            else:
+                self.right.contains(target)
 
     # Return the maximum value found in the tree
+
     def get_max(self):
         # go right until you cannot anymore
         # return value at far right
-        pass
+        if self.value is None:
+            return None
+        else:
+            return self.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        # one side then the other
-        # fn(value)
-        pass
+        fn(self.value)
+
+        if self.left is None and self.right is None:
+            return
+
+        # go left, call fn(value) for each node
+        if self.left:
+            self.left.for_each(fn)
+        # go roght, call fn(value) for each node
+        if self.right:
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
+        # place print statement in between recursive calls
+        # that explore left and right subtrees
+
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
+        # Create a Queue to keep track of nodes
+        # insert self onto beginning of Queue
+        # while something still in Queue
+        # add left and right if exist to the queue
+        # print and remove first node
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self):
+        # create a stack to keep track of nodes we are processing
+        # push root into stack
+
+        # while something still in the stack (not done processing all nodes)
+            # push when we START, pop when a node is DONE
+            # +
+            # use existing `for_each()` as a reference for traversal logic
+            # and don't forget to call `print()`
         pass
 
     # Stretch Goals -------------------------
@@ -103,6 +139,6 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-bst.in_order_dft()
+bst.in_order_print()
 print("post order")
 bst.post_order_dft()
