@@ -10,6 +10,8 @@ This part of the project comprises two days:
    on the BSTNode class.
 """
 
+from collections import deque
+
 
 class BSTNode:
     def __init__(self, value):
@@ -88,30 +90,50 @@ class BSTNode:
     def in_order_print(self):
         # place print statement in between recursive calls
         # that explore left and right subtrees
-
-        pass
+        if self.left:
+            self.left.in_order_print()
+        print(self.value)
+        if self.right:
+            self.right.in_order_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
+        if self.value is None:
+            return None
         # Create a Queue to keep track of nodes
+        queue = deque()
         # insert self onto beginning of Queue
+        queue.append(self)
         # while something still in Queue
-        # add left and right if exist to the queue
-        # print and remove first node
-        pass
+        while (len(queue) > 0):
+            node = queue.popleft()
+
+            # add left and right if exist to the queue
+            if node.left is not None:
+                queue.append(node.left)
+
+            if node.right is not None:
+                queue.append(node.right)
+
+            # print first node
+            print(node.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self):
         # create a stack to keep track of nodes we are processing
+        stack = []
         # push root into stack
+        stack.append(self)
 
         # while something still in the stack (not done processing all nodes)
-            # push when we START, pop when a node is DONE
-            # +
-            # use existing `for_each()` as a reference for traversal logic
-            # and don't forget to call `print()`
+        # while stack is not None:
+
+        # push when we START, pop when a node is DONE
+        # +
+        # use existing `for_each()` as a reference for traversal logic
+        # and don't forget to call `print()`
         pass
 
     # Stretch Goals -------------------------
@@ -119,11 +141,19 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self):
-        pass
+        print(self.value)
+        if self.left:
+            self.left.pre_order_dft()
+        if self.right:
+            self.right.pre_order_dft()
 
     # Print Post-order recursive DFT
     def post_order_dft(self):
-        pass
+        if self.left:
+            self.left.post_order_dft()
+        if self.right:
+            self.right.post_order_dft()
+        print(self.value)
 
 
 """
