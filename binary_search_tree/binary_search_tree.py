@@ -40,13 +40,17 @@ class BSTNode:
             return True
 
         if target < self.value:
-            if not self.left:
+            if self.left is None:
                 return False
+            elif self.left.value == target:
+                return True
             else:
                 self.left.contains(target)
         else:
             if not self.right:
                 return False
+            elif self.right.value == target:
+                return True
             else:
                 self.right.contains(target)
 
@@ -55,10 +59,13 @@ class BSTNode:
     def get_max(self):
         # go right until you cannot anymore
         # return value at far right
-        if self.value is None:
-            return None
-        else:
+        if self.right is None:
             return self.value
+        else:
+            cur_node = self.right
+            while cur_node.right is not None:
+                cur_node = cur_node.right
+            return cur_node.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
