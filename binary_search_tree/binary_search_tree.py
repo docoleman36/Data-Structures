@@ -11,6 +11,7 @@ This part of the project comprises two days:
 """
 
 from collections import deque
+from stack import Stack
 
 
 class BSTNode:
@@ -123,9 +124,10 @@ class BSTNode:
     # in an iterative depth first traversal
     def dft_print(self):
         # create a stack to keep track of nodes we are processing
-        stack = []
+        stack = Stack()
+        cur_node = self
         # push root into stack
-        stack.append(self)
+        stack.push(cur_node)
 
         # while something still in the stack (not done processing all nodes)
         # while stack is not None:
@@ -134,7 +136,14 @@ class BSTNode:
         # +
         # use existing `for_each()` as a reference for traversal logic
         # and don't forget to call `print()`
-        pass
+        while len(stack):
+            removed_head = stack.pop()
+            cur_node = removed_head
+            print(cur_node.value)
+            if cur_node.left:
+                stack.push(cur_node.left)
+            if cur_node.right:
+                stack.push(cur_node.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
